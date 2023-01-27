@@ -1,0 +1,22 @@
+.wrapper {
+    display: flex;
+    .form {
+        min-width: 600px;
+        width: 50%;
+    }
+
+    .preview {
+        min-width: 840px;
+        width: 50%;
+    }
+
+}
+
+@media screen and (max-width: 1460px) {
+    .wrapper {
+        flex-direction: column;
+        .form, .preview {
+            width: 100%;
+        }
+    }
+}

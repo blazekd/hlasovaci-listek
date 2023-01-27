@@ -1,0 +1,29 @@
+<div class="wrapper">
+    <h1>Náhled</h1>
+    <hr>
+    <div class="border">
+        <div id="inner" [style]="{backgroundColor: ballot.color}">
+            <div id="spacer1"></div>
+            <p id="number">Vylosované číslo kandidáta: <span>{{ballot.number}}</span></p>
+            <h1 id="firsth1">HLASOVACÍ LÍSTEK</h1>
+            <p id="text1">pro volbu {{ballot.function}} konanou v roce {{ballot.year}}</p>
+            <h1>{{ballot.candidate}}</h1>
+            <p>jméno, příjmení kandidáta, případně jeho akademický nebo jiný titul</p>
+            <h2>{{ballot.gender}}, {{ballot.age}} let, {{ballot.occupations.join(', ')}}</h2>
+            <p>údaj o pohlaví, věk ke druhému dni volby prezidenta republiky, zaměstnání nebo povolání,<br> které kandidát uvedl na kandidátní listině</p>
+            <h2>{{ballot.address}}</h2>
+            <p>obec, kde je kadidát přihlášen k trvalému pobytu</p>
+            <div id="spacer2"></div>
+            <h2 *ngIf="!ballot.isParty">kandidát je bez politické příslušnosti</h2>
+            <h2 *ngIf="ballot.isParty">{{ballot.party}}</h2>
+            <p *ngIf="ballot.isParty">název politického hnutí, jehož je kandidát členem</p>
+            <div id="spacer3"></div>
+            <h2>kandidát navržený {{ballot.proposedBy}}</h2>
+            <p>údaj o tom, zda jde o kandidáta navrženého poslanci nebo senátory anebo navrhujícím občanem</p>
+            <div class="divimg">
+                <img src="assets/razitko_new.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+

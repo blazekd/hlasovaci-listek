@@ -1,0 +1,151 @@
+
+
+
+<div class="wrapper">
+    <h1>Hlasovací lístek</h1>
+    <hr>
+    <div class="inner">
+        <mat-form-field>
+            <mat-label>Pro volbu</mat-label>
+            <input matInput name="function" placeholder="např. prezidenta" value="prezidenta" [(ngModel)]="ballot.function">
+        </mat-form-field>
+    
+    
+        
+        <mat-form-field class="half">
+            <mat-label>Konanou v roce</mat-label>
+            <input matInput name="year" placeholder="např. 2023" type="number" value="2023" [(ngModel)]="ballot.year">
+        </mat-form-field>
+    
+        <mat-form-field class="half">
+            <mat-label>Číslo hlasovacího lístku</mat-label>
+            <input matInput name="number" placeholder="Zadejte číslo lístku" type="number" value="1" [(ngModel)]="ballot.number">
+        </mat-form-field>
+
+        <div class="mycolors">
+            <mat-form-field class="half">
+                <mat-label>Barva lístku</mat-label>
+                <input type="color" matInput name="color" [(ngModel)]="ballot.color">
+            </mat-form-field>
+            <div class="colorbuttons">
+                <button (click)="ballot.color = '#ffffff'" id="button1">První kolo</button>
+                <button (click)="ballot.color = '#fff08f'" id="button2">Druhé kolo</button>
+            </div>
+        </div>
+
+
+
+    
+    
+        <mat-form-field appearance="fill">
+            <mat-label>Celé jméno kandidáta včetně titulů</mat-label>
+            <input type="text"
+                   placeholder="např. Ing. Andrej Babiš"
+                   matInput
+                   [matAutocomplete]="candidate"
+                   name="candidate"
+                   [(ngModel)]="ballot.candidate">
+            <mat-autocomplete #candidate="matAutocomplete">
+              <mat-option *ngFor="let candidate of candidates" [value]="candidate">{{candidate}}</mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+    
+    
+        
+
+    
+    
+        <mat-form-field appearance="fill" class="half">
+            <mat-label>Pohlaví kandidáta</mat-label>
+            <input type="text"
+                   placeholder="např. ještěr"
+                   matInput
+                   [matAutocomplete]="gender"
+                   [(ngModel)]="ballot.gender"
+                   name="gender">
+            <mat-autocomplete #gender="matAutocomplete">
+              <mat-option value="muž">muž</mat-option>
+              <mat-option value="žena">žena</mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+    
+    
+        
+        <mat-form-field class="half">
+            <mat-label>Věk kandidáta</mat-label>
+            <input matInput name="age" placeholder="Zadejte věk" type="number" value="56" [(ngModel)]="ballot.age">
+        </mat-form-field>
+    
+        <mat-form-field class="example-chip-list" appearance="fill">
+            <mat-label>Povolání kandidáta</mat-label>
+            <mat-chip-grid #chipGrid aria-label="Enter fruits">
+              <mat-chip-row *ngFor="let occupation of ballot.occupations; index as i"
+                            (removed)="remove(i)"
+                            [editable]="true"
+                            (edited)="edit(i, $event)"
+                            [aria-description]="'press enter to edit ' + occupation">
+                {{occupation}}
+                <button matChipRemove [attr.aria-label]="'remove ' + occupation">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip-row>
+              <input placeholder="Přidejte povolání"
+                     [matChipInputFor]="chipGrid"
+                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes "
+                     [matChipInputAddOnBlur]="true"
+                     (matChipInputTokenEnd)="add($event)"/>
+            </mat-chip-grid>
+          </mat-form-field>
+
+
+    
+        <mat-form-field>
+            <mat-label>Obec trvalého pobytu</mat-label>
+            <input id="address" name="address" matInput placeholder="např. Praha" value="Praha" [(ngModel)]="ballot.address">
+        </mat-form-field>
+    
+    
+        <mat-checkbox labelPosition="before" name="isParty" [(ngModel)]="ballot.isParty">Kandidát je členem politického hnutí</mat-checkbox>
+    
+    
+        <mat-form-field appearance="fill">
+            <mat-label>Název hnutí</mat-label>
+            <input type="text" [disabled]="!ballot.isParty"
+                   placeholder="např. ANO 2011"
+                   matInput
+                   [matAutocomplete]="party"
+                   [(ngModel)]="ballot.party"
+                   name="party">
+            <mat-autocomplete #party="matAutocomplete">
+              <mat-option *ngFor="let party of parties" [value]="party">{{party}}</mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+      
+        
+        <mat-form-field appearance="fill">
+            <mat-label>Kandidát byl navržen</mat-label>
+            <input type="text"
+                   placeholder="např. ještěry z pekel"
+                   matInput
+                   [matAutocomplete]="proposed"
+                   [(ngModel)]="ballot.proposedBy"
+                   name="proposedBy">
+            <mat-autocomplete #proposed="matAutocomplete">
+              <mat-option value="senátory">senátory</mat-option>
+              <mat-option value="poslanci">poslanci</mat-option>
+              <mat-option value="občanem">občanem</mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <!-- disabled if not fully vyplneno, kopírovat -->
+          <div class="buttons">
+            <button mat-button (click)="getUrl()">Kopírovat URL</button>
+            <button mat-button (click)="exportAsPDF('inner')">Uložit jako PDF</button>
+            <button mat-button (click)="exportAsJPEG('inner')">Uložit jako JPEG</button>
+          </div>
+
+    </div>
+    
+    </div>
+
+
+  
