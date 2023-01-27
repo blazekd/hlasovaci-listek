@@ -36,28 +36,19 @@ export class GeneratorComponent {
     'prof. MUDr. Tomáš Zima, DrSc.'
   ]
 
-
   constructor(private clipboard: Clipboard, private _snackBar: MatSnackBar) {}
 
-  exportAsPDF(divId: any)
-    {
+  exportAsPDF(divId: any) {
       let data = document.getElementById(divId); 
         let canvas = document.createElement('canvas');
         canvas.height = data!.clientHeight*2
         canvas.width = data!.clientWidth*2
-        canvas.getContext('2d', {alpha:false}); //html2canvas(elem, {canvas: canvas})
- 
+        canvas.getContext('2d', {alpha:false}); //this + scale = less blurry text
         html2canvas(data!, { canvas: canvas, scale: 2 }).then(canvas => {
-          // canvas.
-          const contentDataURL = canvas.toDataURL('image/jpeg')  // 'image/jpeg' for lower quality output.
-          let pdf = new jsPDF('p', 'cm', 'a5'); //Generates PDF in landscape mode
-          // let pdf = new jspdf('p', 'cm', 'a4'); Generates PDF in portrait mode
-          // pdf.addImage(contentDataURL, 'PNG', 0, 0, 29.7, 21.0);  
-          // console.log(canvas.width, canvas.height, contentDataURL)
+          const contentDataURL = canvas.toDataURL('image/jpeg') 
+          let pdf = new jsPDF('p', 'cm', 'a5'); 
           pdf.addImage(contentDataURL, 'PNG', 0, 0, 14.8, 21);
-         
           pdf.save('volebnilistek.pdf');   
-          // document.body.appendChild(canvas)
       }); 
   }
 
@@ -66,10 +57,9 @@ export class GeneratorComponent {
         let canvas = document.createElement('canvas');
         canvas.height = data!.clientHeight*2
         canvas.width = data!.clientWidth*2
-        canvas.getContext('2d', {alpha:false}); //html2canvas(elem, {canvas: canvas})
+        canvas.getContext('2d', {alpha:false}); //this + scale = less blurry text
     html2canvas(data!, { canvas: canvas, scale: 2 }).then(canvas => {
-      // canvas.
-      const contentDataURL = canvas.toDataURL('image/jpeg')  // 'image/jpeg' for lower quality output.
+      const contentDataURL = canvas.toDataURL('image/jpeg') 
       saveAs(contentDataURL, 'volebnilistek.jpg');
   }); 
   }
@@ -89,7 +79,6 @@ export class GeneratorComponent {
   }
 
   getUrl() {
-
     let url = location.origin + this.ballot.toUrlParams();
     this.clipboard.copy(url);
     this._snackBar.open('URL zkopírována','Zavřít', {
@@ -144,11 +133,8 @@ export class Ballot {
 }
 
 function saveAs(uri:any, filename:any) {
-
   var link = document.createElement('a');
-
   if (typeof link.download === 'string') {
-
       link.href = uri;
       link.download = filename;
 
@@ -162,8 +148,6 @@ function saveAs(uri:any, filename:any) {
       document.body.removeChild(link);
 
   } else {
-
       window.open(uri);
-
   }
 }

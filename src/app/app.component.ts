@@ -11,8 +11,7 @@ import { Ballot } from './generator/generator.component';
 export class AppComponent implements OnInit {
   ballot = new Ballot;
 
-  constructor(private route: ActivatedRoute) {
-    
+  constructor(private route: ActivatedRoute){
   }
 
   ngOnInit() {
