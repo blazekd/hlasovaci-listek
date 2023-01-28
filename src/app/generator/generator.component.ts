@@ -100,7 +100,7 @@ export class Ballot {
   isParty = false;
   party!: string;
   proposedBy!: string;
-  color!: string;
+  color: string = '#ffffff';
 
   toUrlParams() {
     let result = '';

@@ -1,81 +1,116 @@
-.inner {
-    width: 500px;
-
-    margin: auto;
-
-    mat-form-field {
-        width: calc(100% - 8px);
-        padding-right: 4px;
-        padding-left: 4px;
-        &.half {
-
-            width: calc(50% - 8px);
-        }
-
-    }
-
-
-}
-
-#button1 {
-    background-color: #ffffff;
-    &:hover {
-        background-color: #eeeeee;
-    }
-
-    &:active {
-        background-color: #dddddd;
-    }
-}
-
-#button2 {
-    background-color: #fff08f;
-
-    &:hover {
-        background-color: #e2d580;
-    }
-
-    &:active {
-        background-color: #cec274;
-    }
-}
-
-.colorbuttons {
-    display: inline-flex;
-    width: calc(50% - 8px);
-    padding: 0 4px;
-    justify-content: space-evenly;
-    button {
-        height: 58px;
-        border-radius: 2px;
-        border: 1px solid black;
-        padding: 15px;
-        background: none;
-        letter-spacing: 0.0892857143em;
-        font-size: 14px;
-        font-weight: 300;
-    }
-
-
-}
-
-.mycolors {
-    display:flex;
-}
-
 .wrapper {
     padding: 40px;
+    .inner {
+        width: 500px;
+        margin: auto;
+    
+        mat-form-field {
+            width: calc(100% - 8px);
+            padding-right: 4px;
+            padding-left: 4px;
+            &.half {
+                width: calc(50% - 8px);
+            }
+        }
+    
+        mat-checkbox {
+            width: calc(100% - 8px);
+            padding-right: 4px;
+            padding-left: 4px;
+            margin-bottom: 22px;
+        }
+
+        .buttons {
+            display:flex;
+            justify-content: space-around;
+        }
+
+        .mycolors {
+            display:flex;
+            .colorbuttons {
+                display: inline-flex;
+                width: calc(50% - 8px);
+                padding: 0 4px;
+                justify-content: space-evenly;
+                button {
+                    height: 58px;
+                    border-radius: 2px;
+                    border: 1px solid black;
+                    padding: 15px;
+                    background: none;
+                    letter-spacing: 0.0892857143em;
+                    font-size: 14px;
+                    font-weight: 300;
+                }
+            
+                #button1 {
+                    background-color: #ffffff;
+                    &:hover {
+                        background-color: #eeeeee;
+                    }
+                
+                    &:active {
+                        background-color: #dddddd;
+                    }
+                }
+                
+                #button2 {
+                    background-color: #fff08f;
+                
+                    &:hover {
+                        background-color: #e2d580;
+                    }
+                
+                    &:active {
+                        background-color: #cec274;
+                    }
+                }
+            }
+        }
+    }
+
+    h1 {
+        text-align: center;
+    }
+    
+    hr {
+        margin-bottom: 20px;
+    }
 }
 
-h1 {
-    text-align: center;
-}
 
-hr {
-    margin-bottom: 20px;
-}
 
-.buttons {
-    display:flex;
-    justify-content: space-around;
+
+
+@media screen and (max-width: 600px) {
+    .wrapper {
+        .inner {
+            display: flex;
+            flex-direction: column;
+            width: unset;
+            mat-form-field.half {
+                width: calc(100% - 8px);
+            }
+            
+            .mycolors {
+                flex-direction: column;
+                .colorbuttons {
+                    width: unset;
+                    flex-direction: column;
+                    button {
+                        margin-bottom: 22px;
+                    }
+                }
+            }
+        
+            .buttons {
+                flex-direction: column;
+                button {
+                    margin-bottom: 15px;
+                    height: 50px;
+                    background-color: #eee;
+                }
+            }
+        }
+    }
 }
