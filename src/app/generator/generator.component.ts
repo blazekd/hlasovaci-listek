@@ -128,7 +128,7 @@ export class Ballot {
       result += '&proposedBy=' + this.proposedBy
     if (this.color)
       result += '&color=' + this.color.substring(1);
-    return '?' + result.substring(1)
+    return '?' + result.substring(1).replaceAll(' ', '%20');
   }
 }
 
